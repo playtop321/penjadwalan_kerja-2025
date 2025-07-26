@@ -7,9 +7,11 @@ use Filament\Models\Contracts\FilamentUser;
 use Filament\Models\Contracts\HasAvatar;
 use Filament\Panel;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Spatie\Permission\Traits\HasRoles;
+use App\Models\Schedule;
 
 class User extends Authenticatable implements FilamentUser, HasAvatar
 {
@@ -66,4 +68,12 @@ class User extends Authenticatable implements FilamentUser, HasAvatar
     {
         return true;
     }
+
+    public function schedules(): HasMany
+    {
+
+        return $this->hasMany(Schedule::class);
+
+    }
+
 }
